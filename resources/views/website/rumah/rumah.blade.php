@@ -1,15 +1,11 @@
 @extends('website.main.layout')
 
 @section('content')
-<div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
+@php
+    $text = ['Rumah','Home', 'Rumah'];
+@endphp
+<x-header-title :text="$text"/>
+
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
