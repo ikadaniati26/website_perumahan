@@ -4,7 +4,7 @@
             @foreach ($headerTable as $item)
             <th>{{ $item }}</th>
             @endforeach
-        </tr>a
+        </tr>
     </thead>
     <tbody>
         @php
