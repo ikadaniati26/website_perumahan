@@ -5,6 +5,8 @@ use App\Http\Controllers\authController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\penghuniController;
 use App\Http\Controllers\rumahController;
+use App\Http\Controllers\pembayaranController;
+
 
 Route::middleware(['web'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -31,4 +33,7 @@ Route::delete('/hapus-artikel/{id}',[penghuniController::class, 'destroy'])->nam
 
 Route::get('/rumah', [rumahController::class, 'index']);
 // Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
+
+Route::get('/pembayaran', [pembayaranController::class, 'index']);
+
 

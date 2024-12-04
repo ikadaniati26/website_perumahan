@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Penghuni;
+use App\http\Resources\PenghuniResource;
 
 class penghuniController extends Controller
 {
@@ -11,6 +12,7 @@ class penghuniController extends Controller
     public function index()
     {
         $penghuni = penghuni::all();
+        $penghuni = PenghuniResource::collection($penghuni)->toArray(request());
         // dd($penghuni);
         return view('website.penghuni.penghuni', compact('penghuni'));
     }

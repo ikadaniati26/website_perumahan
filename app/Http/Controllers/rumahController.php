@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rumah;
 use Illuminate\Support\Facades\DB;
+use App\http\Resources\RumahResource;
 
 
 class rumahController extends Controller
@@ -17,13 +18,16 @@ class rumahController extends Controller
 
         $data = DB::table('rumah as r')
         ->select(
+            'r.idrumah',
             'r.no_rumah',
             'r.status as status_rumah',
             'h.nama as nama_penghuni',
         )
         ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
         ->get();
+       $data = RumahResource::collection($data)->toArray(request());
 // dd($data);
+
     return view('website.rumah.rumah', compact('data'));
         
     }
