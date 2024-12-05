@@ -7,10 +7,10 @@ use App\Http\Controllers\penghuniController;
 use App\Http\Controllers\rumahController;
 use App\Http\Controllers\pembayaranController;
 
+Route::get('/', [authController::class, 'showLoginForm'])->name('login');
 
 Route::middleware(['web'])->group(function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('proses_login');
+    Route::post('/login', [authController::class, 'login'])->name('proses_login');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', function () {
@@ -20,7 +20,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/penghuni', [penghuniController::class, 'index']);
 });
 
-// Route::get('/penghuni', [dataController::class,'index']);
+
 
 
 //route CRUD PENGHUNI
@@ -32,7 +32,7 @@ Route::patch('/update-artikel/{id}',[penghuniController::class, 'update'])->name
 Route::delete('/hapus-artikel/{id}',[penghuniController::class, 'destroy'])->name('hapus');
 
 Route::get('/rumah', [rumahController::class, 'index']);
-// Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
+Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
 
 Route::get('/pembayaran', [pembayaranController::class, 'index']);
 

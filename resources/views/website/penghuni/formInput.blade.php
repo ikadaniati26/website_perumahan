@@ -9,90 +9,44 @@ $text = ['Penghuni','Home', 'Form InputPenghuni'];
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Form input Penghuni</h5>
-                    <form method="POST" action="{{ url('/store') }}" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Floating labels Form</h5>
+                      <!-- Floating Labels Form -->
+                      <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
                         @csrf
-                     
-                        <x-input-username 
-                        id="username" 
-                        name="Nama" 
-                        label="Nama" 
-                        placeholder="" 
-                        value="{{ old('nama') }}" 
-                        class="custom-class" 
-                    />
-                    
-                       {{--  <div class="row mb-3">
-                            <label for="formFile" class="col-sm-2 col-form-label">KTP</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="file" id="ktp" name="ktp">
-                                @error('ktp')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="col-md-12">
+                            <x-form.validasi name="nama"/>
+                            <x-form.input_text name="nama" label="Masukan Nama Anda"/>
+                        </div>
+                        <div class="col-md-6">
+                            <x-form.validasi name="foto_ktp"/>
+                            <x-form.input_file name="foto_ktp" label="Masukkan foto ktp"/>
+                        </div>
+                        <div class="col-md-6">
+                            @php
+                                $nilai = ['kontrak','tetap']
+                            @endphp
+                            <x-form.input_dropdown name="status_penghuni" :nilai="$nilai" label="Masukkan status penghuni" text="Pilihan"/>
+                        </div>
+                        <div class="col-md-6">
+                            <x-form.input_number name="no_telp" label="Masukan Nomor telp"/>
+                        </div>
+                        <div class="col-md-6">
+                            @php
+                                $status_menikah = ['belum','sudah']
+                            @endphp
+                            <x-form.input_dropdown name="status_menikah" :nilai="$status_menikah" label="Masukkan status pernikahan" text="Pilihan"/>
                         </div>
 
-                        <fieldset class="row mb-3">
-                            <legend class="col-form-label col-sm-2 pt-0">Status Penghuni</legend>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_penghuni" id="gridRadios1"
-                                        value="Kontrak" {{ old('status_penghuni')=='Kontrak' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Kontrak
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_penghuni" id="gridRadios2"
-                                        value="Tetap" {{ old('status_penghuni')=='Tetap' ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="gridRadios2">
-                                        Tetap
-                                    </label>
-                                </div>
-                                @error('status_penghuni')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </fieldset>
-
-                        <div class="row mb-3">
-                            <label for="no_telp" class="col-sm-2 col-form-label">No Telp</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="no_telp" name="no_telp"
-                                    value="{{ old('no_telp') }}">
-                                @error('no_telp')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="reset" class="btn btn-secondary">Reset</button>
                         </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Status Menikah</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="status_menikah" name="status_menikah">
-                                    <option selected disabled>Pilih status menikah</option>
-                                    <option value="Sudah" {{ old('status_menikah')=='Sudah' ? 'selected' : '' }}>Sudah
-                                    </option>
-                                    <option value="Belum" {{ old('status_menikah')=='Belum' ? 'selected' : '' }}>Belum
-                                    </option>
-                                </select>
-                                @error('status_menikah')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit Form</button>
-                            </div>
-                        </div> --}}
-                    </form>
-                   
-                
-
-                </div>
+                      </form><!-- End floating Labels Form -->
+        
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
