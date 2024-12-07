@@ -24,33 +24,27 @@ class rumahController extends Controller
             'h.nama as nama_penghuni',
         )
         ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
+        ->whereNotNull('h.nama')
         ->get();
        $data = RumahResource::collection($data)->toArray(request());
-// dd($data);
+    //    dd($data);
 
-    return view('website.rumah.rumah', compact('data'));
+        return view('website.rumah.rumah', compact('data'));
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
-    }
+        return view('website.rumah.formInput');    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        //
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         $data = DB::table('rumah as r')

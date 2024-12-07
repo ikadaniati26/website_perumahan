@@ -23,7 +23,7 @@ Route::middleware(['web'])->group(function () {
 
 
 
-//route CRUD PENGHUNI
+//ROUTE CRUD PENGHUNI
 Route::get('/inputpenghuni',[penghuniController::class,'create'])->name('inputpenghuni');
 Route::post('/store',[penghuniController::class,'store'])->name('penghuni');
 Route::get('/show/{id}', [penghuniController::class, 'show'])->name('show');
@@ -31,9 +31,12 @@ Route::get('/edit/{id}', [penghuniController::class, 'edit'])->name('edit');
 Route::patch('/update-artikel/{id}',[penghuniController::class, 'update'])->name('update');
 Route::delete('/hapus-artikel/{id}',[penghuniController::class, 'destroy'])->name('hapus');
 
+//ROUTE CRUD RUMAH
+Route::get('/inputrumah',[rumahController::class,'create'])->name('inputrumah');
 Route::get('/rumah', [rumahController::class, 'index']);
 Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
 
+//ROUTE CRUD PEMBAYARAN
 Route::get('/pembayaran', [pembayaranController::class, 'index']);
 
 
