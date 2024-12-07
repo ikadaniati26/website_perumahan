@@ -23,13 +23,10 @@ $text = ['Penghuni','Home', 'Form InputRumah'];
                             @php
                                 $nilai = ['dihuni','tidak dihuni']
                             @endphp
-                            <x-form.input_dropdown name="status_penghuni" :nilai="$nilai" label="Pilih status rumah" text="Pilihan"/>
+                            <x-form.input_dropdown name="status_rumah" :nilai="$nilai" label="Masukkan status rumah" text="Pilihan"/>
                         </div>
                         <div class="col-md-4">
-                            @php
-                                $nilai = ['dihuni','tidak dihuni']
-                            @endphp
-                            <x-form.input_dropdown name="status_penghuni" :nilai="$nilai" label="Pilih nama penghuni" text="Pilihan"/>
+                            <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$data" label="Masukkan nama penghuni" text="Pilihan"/>
                         </div>
 
                         <div class="text-center">

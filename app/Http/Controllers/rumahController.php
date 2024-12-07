@@ -36,7 +36,20 @@ class rumahController extends Controller
 
     public function create()
     {
-        return view('website.rumah.formInput');    }
+        $data = DB::table('rumah as r')
+        ->select(
+            'r.idrumah',
+            'r.no_rumah',
+            'r.status as status_rumah',
+            'h.nama as nama_penghuni',
+        )
+        ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
+        ->whereNotNull('h.nama')
+        ->get();
+
+       $data = RumahResource::collection($data)->toArray(request());
+    //    dd($data);
+        return view('website.rumah.formInput', compact('data'));    }
 
    
     public function store(Request $request)
