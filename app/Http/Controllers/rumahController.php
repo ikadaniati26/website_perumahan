@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rumah;
 use Illuminate\Support\Facades\DB;
 use App\http\Resources\RumahResource;
 use App\Models\Penghuni;
+use App\Models\Rumah;
+
+
 
 class rumahController extends Controller
 {
@@ -15,17 +17,21 @@ class rumahController extends Controller
      */
     public function index()
     {
+     $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
+     ->whereNotNull('penghuni_idpenghuni') // Filter: hanya rumah yang memiliki penghuni
+     ->get();
+     $data = RumahResource::collection($data)->toArray(request());
 
-        $data = DB::table('rumah as r')
-            ->select(
-                'r.idrumah',
-                'r.no_rumah',
-                'r.status as status_rumah',
-                'h.nama as nama_penghuni',
-            )
-            ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
-            ->whereNotNull('h.nama')
-            ->get();
+        // $data = DB::table('rumah as r')
+        //     ->select(
+        //         'r.idrumah',
+        //         'r.no_rumah',
+        //         'r.status as status_rumah',
+        //         'h.nama as nama_penghuni',
+        //     )
+        //     ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
+        //     ->whereNotNull('h.nama')
+        //     ->get();
         $data = RumahResource::collection($data)->toArray(request());
         //    dd($data);
         return view('website.rumah.rumah', compact('data'));
