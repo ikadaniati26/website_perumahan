@@ -28,7 +28,7 @@ $text = ['Penghuni','Home', 'Penghuni'];
               // dd($penghuni);
           @endphp
 
-          <x-tabel :data="$penghuni" :headerTable="$headerTable"  />
+          <x-tabel :data="$penghuni" :headerTable="$headerTable" route="show_penghuni"/>
 
         </div>
       </div>

@@ -26,7 +26,7 @@
                     $headerTable = ['No', 'No rumah', 'status', 'nama penghuni','Action'];
                     // dd($data);
                     @endphp
-                    <x-tabel :data="$data" :headerTable="$headerTable"/>
+                    <x-tabel :data="$data" :headerTable="$headerTable" route="show_rumah"/>
                     
                 </div>
             </div>
