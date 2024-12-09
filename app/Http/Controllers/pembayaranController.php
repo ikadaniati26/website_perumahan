@@ -23,7 +23,7 @@ class pembayaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.pembayaran.formInput');
     }
 
     /**

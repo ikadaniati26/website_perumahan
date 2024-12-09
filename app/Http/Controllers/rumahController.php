@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Rumah;
 use Illuminate\Support\Facades\DB;
 use App\http\Resources\RumahResource;
-
+use App\Models\Penghuni;
 
 class rumahController extends Controller
 {
@@ -28,7 +28,6 @@ class rumahController extends Controller
         ->get();
        $data = RumahResource::collection($data)->toArray(request());
     //    dd($data);
-
         return view('website.rumah.rumah', compact('data'));
         
     }
@@ -36,25 +35,28 @@ class rumahController extends Controller
 
     public function create()
     {
-        $data = DB::table('rumah as r')
-        ->select(
-            'r.idrumah',
-            'r.no_rumah',
-            'r.status as status_rumah',
-            'h.nama as nama_penghuni',
-        )
-        ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
-        ->whereNotNull('h.nama')
-        ->get();
-
-       $data = RumahResource::collection($data)->toArray(request());
-    //    dd($data);
-        return view('website.rumah.formInput', compact('data'));    }
+        $penghuni = Penghuni::all();
+        return view('website.rumah.formInput', compact('penghuni'));    }
 
    
     public function store(Request $request)
     {
-        
+        // dd($request->all());
+
+        $message = [
+            'no_rumah.required' => 'nomor rumah harus diisi',
+            'status' => 'status rumah harus diisi',
+            'nama_penghuni' => 'nama penghuni harus diisi'
+        ];
+        $validated = $request->validate([
+            'no_rumah' => 'required',
+            'status' => 'required',
+            'nama_penghuni' => 'required',
+        ],$message);
+
+        //simpan ke db
+        rumah::create($validated);
+        return redirect('/rumah')->with('success','data rumah berhasil disimpan');
     }
 
    

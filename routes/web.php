@@ -32,11 +32,14 @@ Route::patch('/update-artikel/{id}',[penghuniController::class, 'update'])->name
 Route::delete('/hapus-artikel/{id}',[penghuniController::class, 'destroy'])->name('hapus');
 
 //ROUTE CRUD RUMAH
-Route::get('/inputrumah',[rumahController::class,'create'])->name('inputrumah');
 Route::get('/rumah', [rumahController::class, 'index']);
+Route::get('/inputrumah',[rumahController::class,'create'])->name('inputrumah');
+Route::post('/storerumah',[rumahController::class,'store'])->name('rumah');
 Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
 
 //ROUTE CRUD PEMBAYARAN
 Route::get('/pembayaran', [pembayaranController::class, 'index']);
+Route::get('/inputpembayaran',[pembayaranController::class,'create'])->name('inputpembayaran');
+
 
 

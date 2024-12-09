@@ -30,11 +30,10 @@ class penghuniController extends Controller
             'nama.required' => 'nama harus diisi', 
             'foto_ktp.required' => 'foto harus diisi', 
             'foto_ktp.mimes'=> 'foto harus berektensi jpg',
-            'foto_ktp.max'=> 'ukuran foto harus kurang dari 2 MB'
-
-            // 'status_penghuni.required' => 'status harus diisi', 
-            // 'no_telp.required' => 'notelp harus diisi', 
-            // 'status_menikah.required' => 'status harus diisi', 
+            'foto_ktp.max'=> 'ukuran foto harus kurang dari 2 MB',
+            'status_penghuni.required' => 'status harus diisi', 
+            'no_telp.required' => 'notelp harus diisi', 
+            'status_menikah.required' => 'status harus diisi', 
         ];
         $validated = $request->validate([
             'nama' => 'required',

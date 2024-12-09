@@ -13,7 +13,7 @@ $text = ['Penghuni','Home', 'Form InputRumah'];
                     <div class="card-body">
                       <h5 class="card-title">Floating labels Form</h5>
                       <!-- Floating Labels Form -->
-                      <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
+                      <form class="row g-3" action="{{ url('/storerumah') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="col-md-4">
                             <x-form.validasi name="no_rumah"/>
@@ -26,7 +26,7 @@ $text = ['Penghuni','Home', 'Form InputRumah'];
                             <x-form.input_dropdown name="status_rumah" :nilai="$nilai" label="Masukkan status rumah" text="Pilihan"/>
                         </div>
                         <div class="col-md-4">
-                            <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$data" label="Masukkan nama penghuni" text="Pilihan"/>
+                            <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$penghuni" label="Masukkan nama penghuni" text="Pilihan"/>
                         </div>
 
                         <div class="text-center">
