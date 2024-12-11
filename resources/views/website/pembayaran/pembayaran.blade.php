@@ -2,7 +2,7 @@
 
 @section('content')
 @php
-$text = ['Penghuni','Home', 'Pembayaran'];
+$text = ['Pembayaran','Home', 'Pembayaran'];
 @endphp
 
 <x-header-title :text="$text" />
@@ -12,7 +12,7 @@ $text = ['Penghuni','Home', 'Pembayaran'];
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Data Penghuni</h5>
+            <h5 class="card-title">Data Pembayaran</h5>
             <!-- Button Tambah Data -->
             <a href="{{ url('/inputpembayaran') }}" class="btn btn-primary mb-2">
               <i class="fas fa-plus"></i> Tambah Data

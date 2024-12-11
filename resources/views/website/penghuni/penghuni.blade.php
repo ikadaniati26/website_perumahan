@@ -24,11 +24,11 @@ $text = ['Penghuni','Home', 'Penghuni'];
           @endif
 
           @php
-              $headerTable = ['No', 'Nama', 'ktp', 'status', 'no telp', 'status menikah','Action'];
+              $headerTable = ['No', 'Nama', 'ktp', 'status', 'no telp', 'menikah','Action'];
               // dd($penghuni);
           @endphp
 
-          <x-tabel :data="$penghuni" :headerTable="$headerTable"  />
+          <x-tabel :data="$penghuni" :headerTable="$headerTable" showroute="show_penghuni" editroute="edit_penghuni" hapusroute="hapus_penghuni"/>
 
         </div>
       </div>

@@ -20,22 +20,20 @@ Route::middleware(['web'])->group(function () {
     Route::get('/penghuni', [penghuniController::class, 'index']);
 });
 
-
-
-
 //ROUTE CRUD PENGHUNI
 Route::get('/inputpenghuni',[penghuniController::class,'create'])->name('inputpenghuni');
 Route::post('/store',[penghuniController::class,'store'])->name('penghuni');
-Route::get('/show/{id}', [penghuniController::class, 'show'])->name('show');
-Route::get('/edit/{id}', [penghuniController::class, 'edit'])->name('edit');
-Route::patch('/update-artikel/{id}',[penghuniController::class, 'update'])->name('update');
-Route::delete('/hapus-artikel/{id}',[penghuniController::class, 'destroy'])->name('hapus');
+Route::get('/show_penghuni/{id}', [penghuniController::class, 'show'])->name('show_penghuni');
+Route::get('/edit_penghuni/{id}', [penghuniController::class, 'edit'])->name('edit_penghuni');
+Route::patch('/update-penghuni/{id}',[penghuniController::class, 'update'])->name('update_penghuni');
+Route::delete('/hapus-penghuni/{id}',[penghuniController::class, 'destroy'])->name('hapus_penghuni');
 
 //ROUTE CRUD RUMAH
 Route::get('/rumah', [rumahController::class, 'index']);
 Route::get('/inputrumah',[rumahController::class,'create'])->name('inputrumah');
 Route::post('/storerumah',[rumahController::class,'store'])->name('rumah');
-Route::get('/show/{id}', [rumahController::class, 'show'])->name('show');
+Route::get('/show_rumah/{id}', [rumahController::class, 'show'])->name('show_rumah');
+Route::delete('/hapus-rumah/{id}',[penghuniController::class, 'destroy'])->name('hapus_rumah');
 
 //ROUTE CRUD PEMBAYARAN
 Route::get('/pembayaran', [pembayaranController::class, 'index']);

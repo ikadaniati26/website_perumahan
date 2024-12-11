@@ -70,7 +70,6 @@ class penghuniController extends Controller
         )
             ->where('penghuni.idpenghuni',$id)
             ->first();
-
         return view ('website.penghuni.edit', compact('editpenghuni'));
     }
 
@@ -81,7 +80,7 @@ class penghuniController extends Controller
         ->update([
             'nama' => $request->nama,
             'foto_ktp' => $request->foto_ktp,
-            'status_penghuni' => $request->status_penghuno,
+            'status_penghuni' => $request->status_penghuni,
             'no_telp' => $request->no_telp,
             'status_menikah' => $request->status_menikah,
         ]);

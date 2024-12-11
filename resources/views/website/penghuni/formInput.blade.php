@@ -11,7 +11,7 @@ $text = ['Penghuni','Home', 'Form InputPenghuni'];
             <div class="card">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Floating labels Form</h5>
+                      <h5 class="card-title">Form Input Penghuni</h5>
                       <!-- Floating Labels Form -->
                       <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
                         @csrf

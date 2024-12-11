@@ -27,15 +27,14 @@
                 <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">KTP</label>
                     <div class="col-md-8 col-lg-9">
-                        <img src="{{isset($editpenghuni->foto_ktp)?$editpenghuni->foto_ktp : ''}}" alt="Profile">
+                        <img src="{{ isset($editpenghuni->foto_ktp) && $editpenghuni->foto_ktp != '' ? asset('storage/'.$editpenghuni->foto_ktp) : asset('images/default-ktp.jpg') }}" alt="KTP Image">
                         <div class="pt-2">
-                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                                    class="bi bi-upload"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                                    class="bi bi-trash"></i></a>
+                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="row mb-3">
                     <label for="about" class="col-md-4 col-lg-3 col-form-label">Status Penghuni</label>

@@ -16,12 +16,12 @@ $text = ['Penghuni','Home', 'FormInputPembayaran'];
                       <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="col-md-12">
-                            <x-form.validasi name="nama"/>
-                            <x-form.input_text name="nama" label="Masukan Nama Anda"/>
+                            <x-form.validasi name="jenis_iuran"/>
+                            <x-form.input_text name="jenis_iuran" label="Masukan Nama Anda"/>
                         </div>
-                        <div class="col-md-6">
-                            <x-form.validasi name="foto_ktp"/>
-                            <x-form.input_file name="foto_ktp" label="Masukkan foto ktp"/>
+                        <div class="col-md-12">
+                            <x-form.validasi name="jumlah_"/>
+                            <x-form.input_text name="jenis_iuran" label="Masukan Nama Anda"/>
                         </div>
                         <div class="col-md-6">
                             @php
