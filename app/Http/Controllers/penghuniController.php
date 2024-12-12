@@ -90,6 +90,6 @@ class penghuniController extends Controller
     public function destroy(string $id)
     {
         $penghuni = Penghuni::where('idpenghuni', $id)->delete();
-        return redirect('/penghuni')->with('success','data berhasil dihapus');
+        return redirect('/penghuni')->with('success','data penghuni berhasil dihapus');
     }
 }

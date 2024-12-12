@@ -2,9 +2,9 @@
 
 @section('content')
 @php
-    $text = ['Rumah','Home', 'Rumah'];
+$text = ['Rumah','Home', 'Rumah'];
 @endphp
-<x-header-title :text="$text"/>
+<x-header-title :text="$text" />
 
 <section class="section">
     <div class="row">
@@ -25,8 +25,9 @@
                     @php
                     $headerTable = ['No', 'No rumah', 'status', 'nama penghuni','Action'];
                     @endphp
-                    <x-tabel :data="$data" :headerTable="$headerTable" showroute="show_rumah" />
-                    
+                    <x-tabel :data="$data" :headerTable="$headerTable" showroute="show_rumah" editroute="edit_rumah"
+                        hapusroute="hapus_rumah" />
+
                 </div>
             </div>
 

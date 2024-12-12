@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PenghuniResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\http\Resources\RumahResource;
@@ -14,9 +15,10 @@ class rumahController extends Controller
 {
     public function index()
     {
-        $data = Rumah::with('penghuni') // melakukan eager loading relasi penghuni
-            ->whereNotNull('penghuni_idpenghuni') //filter: hanya rumah yang memiliki penghuni
-            ->get();
+        // $data = Rumah::with('penghuni') // melakukan eager loading relasi penghuni
+        //     ->whereNotNull('penghuni_idpenghuni') //filter: hanya rumah yang memiliki penghuni
+        //     ->get();
+        $data = Rumah::all();
         $data = RumahResource::collection($data)->toArray(request());
         // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
         // return response()->json($data);
@@ -28,8 +30,12 @@ class rumahController extends Controller
 
     public function create()
     {
-        $penghuni = Penghuni::all();
-        return view('website.rumah.formInput', compact('penghuni'));
+        $rumah = Rumah::all(); 
+        $penghuni = Penghuni::all(); 
+        $rumah = RumahResource::collection($rumah)->toArray(request());
+        $penghuni = PenghuniResource::collection($penghuni)->toArray(request());
+
+        return view('website.rumah.formInput', compact('penghuni', 'rumah'));
     }
 
 
@@ -37,39 +43,28 @@ class rumahController extends Controller
     {
         // dd($request->all());
         $message = [
-            'no_rumah.required' => 'nomor rumah harus diisi',
-            'status.required' => 'status rumah harus diisi',
-            'nama_penghuni.required' => 'nama penghuni harus diisi'
+            'no_rumah.required' => 'No rumah harus diisi',
+            'status_rumah.required' => 'Status rumah harus diisi',
+            'nama_penghuni.nullable' => 'Nama penghuni harus diisi'
         ];
         $validated = $request->validate([
             'no_rumah' => 'required',
-            'status' => 'required',
-            'nama_penghuni' => 'required',
+            'status_rumah' => 'required',
+            'nama_penghuni' => 'nullable',
         ], $message);
-        dd($validated);
-        
-        //simpan ke db
-        Rumah::create($validated);
+
+        // Simpan ke database
+        Rumah::create([
+            'no_rumah' => $validated['no_rumah'],
+            'status' => $validated['status_rumah'], // Sesuaikan nama kolom di database
+            'penghuni_idpenghuni' => $validated['nama_penghuni'] ?? null,// Foreign Key
+        ]);
         return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
     }
 
 
     public function show(string $id)
     {
-        $data = DB::table('rumah as r')
-            ->select(
-                'r.idrumah',
-                'r.Penghuni_idPenghuni',
-                'r.rumah_idrumah',
-                'p.nama',
-                'p.status_penghuni',
-                'h.tanggal_mulai as historical_mulai',
-                'h.tanggal_mulai',
-                'h.tanggal_berakhir',
-            )
-            ->leftJoin('penghuni as p', 'p.idpenghuni', '=', 'r.Penghuni_idPenghuni') // Menghubungkan 'rumah' dengan 'penghuni'
-            ->leftJoin('historical_penghuni as h', 'h.Penghuni_idPenghuni', '=', 'p.idpenghuni') // Menghubungkan 'historical' dengan 'penghuni'
-            ->get();
         // dd($data);
         return view('website.rumah.detailhistory', compact('data'));
     }
@@ -95,6 +90,7 @@ class rumahController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rumah = Rumah::where('idrumah', $id)->delete();
+        return redirect('/rumah')->with('success', 'data rumah berhasil dihapus');
     }
 }
