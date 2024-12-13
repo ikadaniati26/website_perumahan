@@ -23,10 +23,12 @@ $text = ['Pembayaran','Home', 'Pembayaran'];
             </div>
             @endif
             @php
-                $headerTable = ['No','jenis_iuran','jumlah','bulan_bayar','status','create_at','update_at']
+                $headerTable = ['No','jenis_iuran','jumlah','bulan_bayar','status', 'aksi']
             @endphp
   
-            <x-tabel :data="$pembayaran" :headerTable="$headerTable"  />
+            <x-tabel :data="$pembayaran" :headerTable="$headerTable" editroute="edit_rumah"
+            hapusroute="hapus_rumah" withModal="true" />
+            <x-dynamic-modal />
   
           </div>
         </div>
