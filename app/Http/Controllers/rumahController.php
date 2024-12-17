@@ -19,9 +19,10 @@ class rumahController extends Controller
         //     ->whereNotNull('penghuni_idpenghuni') //filter: hanya rumah yang memiliki penghuni
         //     ->get();
         $data = Rumah::all();
+        // dd($data);
         $data = RumahResource::collection($data)->toArray(request());
         // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
-        // return response()->json($data);
+        return response()->json($data);
         // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
 
         return view('website.rumah.rumah', compact('data'));
@@ -65,13 +66,11 @@ class rumahController extends Controller
 
     public function show(string $id)
     {
-        // dd($data);
-        return view('website.rumah.detailhistory', compact('data'));
+        $datarumah = Rumah::where('idrumah', $id)->first();
+        return view('website.rumah.rumah', compact('datarumah'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
+    
     public function edit(string $id)
     {
         //

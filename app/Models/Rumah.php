@@ -12,6 +12,7 @@ class Rumah extends Model
 
     protected $table= 'rumah';
     protected $fillable = ['idrumah','no_rumah','status','created_at','updated_at','penghuni_idpenghuni'];
+    
     public function penghuni()
     {
         

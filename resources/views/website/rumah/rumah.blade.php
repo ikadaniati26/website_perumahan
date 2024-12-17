@@ -25,9 +25,17 @@ $text = ['Rumah','Home', 'Rumah'];
                     @php
                     $headerTable = ['No', 'No rumah', 'status', 'nama penghuni','Action'];
                     @endphp
-                    <x-tabel :data="$data" :headerTable="$headerTable"  editroute="edit_rumah"
+                    <x-tabel :data="$data" :headerTable="$headerTable"  editroute="edit_rumah" 
                         hapusroute="hapus_rumah" withModal="true"/>
-                        <x-dynamic-modal />
+                        {{-- <x-dynamic-modal /> --}}
+                        <x-dynamic-modal :title="'Detail Rumah'" >
+                            <p><strong>No Rumah:</strong> </p>
+                            {{-- <p><strong>Status:</strong> {{ $showrumah->status }}</p>
+                            <p><strong>Nama Penghuni:</strong> {{ $showrumah->nama_penghuni }}</p>
+                            <p><strong>Status Pembayaran:</strong> {{ $showrumah->status_pembayaran }}</p> --}}
+                        </x-dynamic-modal>
+                        
+                        
 
                 </div>
             </div>

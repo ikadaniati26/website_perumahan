@@ -23,7 +23,7 @@ $text = ['Pembayaran','Home', 'Pembayaran'];
             </div>
             @endif
             @php
-                $headerTable = ['No','jenis_iuran','jumlah','bulan_bayar','status', 'aksi']
+                $headerTable = ['No', 'Nama','jenis_iuran','jumlah','bulan_bayar','status', 'aksi']
             @endphp
   
             <x-tabel :data="$pembayaran" :headerTable="$headerTable" editroute="edit_rumah"

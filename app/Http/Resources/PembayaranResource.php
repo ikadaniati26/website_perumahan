@@ -16,13 +16,13 @@ class PembayaranResource extends JsonResource
     {
         return [
             'id' => $this->idPembayaran,
+            'nama' => $this->penghuni ? $this->penghuni->nama : null,
             'jenis_iuran' => $this->jenis_iuran,
             'jumlah' => $this->jumlah,
             'bulan_bayar' => $this->bulan_bayar,
             'status' => $this->status,
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
-            'Penghuni_idPenghuni' => $this->Penghuni_idPenghuni
+            // 'create_at' => $this->create_at,
+            // 'update_at' => $this->update_at,
         ];
     }
 }
