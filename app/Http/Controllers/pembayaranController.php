@@ -25,10 +25,9 @@ class pembayaranController extends Controller
      */
     public function create()
     {
-        // $pembayaran = Pembayaran::all();
-        // $penghuni = Penghuni::all();
-        // $penghuni = Penghuni
-        return view('website.pembayaran.formInput');
+        $pembayaran = Pembayaran::all();
+        $penghuni = Penghuni::all();
+        return view('website.pembayaran.formInput', compact('pembayaran','penghuni'));
     }
 
     /**

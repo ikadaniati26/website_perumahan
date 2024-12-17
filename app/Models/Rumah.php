@@ -15,7 +15,6 @@ class Rumah extends Model
     
     public function penghuni()
     {
-        
         return $this->belongsTo(Penghuni::class,'penghuni_idpenghuni', 'idpenghuni');
     }
 }

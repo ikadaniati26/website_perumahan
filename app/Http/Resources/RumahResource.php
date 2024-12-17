@@ -18,7 +18,6 @@ class RumahResource extends JsonResource
             'id' => $this->idrumah,
             'no_rumah' => $this->no_rumah,
             'status' => $this->status,
-            // 'nama' => $this->penghuni['nama'] //merujuk array pada penghuni
             'nama' => $this->penghuni ? $this->penghuni->nama : null,
         ];
     }

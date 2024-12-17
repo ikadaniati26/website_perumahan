@@ -15,14 +15,10 @@ class rumahController extends Controller
 {
     public function index()
     {
-        // $data = Rumah::with('penghuni') // melakukan eager loading relasi penghuni
-        //     ->whereNotNull('penghuni_idpenghuni') //filter: hanya rumah yang memiliki penghuni
-        //     ->get();
         $data = Rumah::all();
-        // dd($data);
         $data = RumahResource::collection($data)->toArray(request());
         // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
-        return response()->json($data);
+        // return response()->json($data);
         // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
 
         return view('website.rumah.rumah', compact('data'));
