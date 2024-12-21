@@ -62,9 +62,15 @@ class rumahController extends Controller
 
     public function show(string $id)
     {
-        $datarumah = Rumah::where('idrumah', $id)->first();
-        return view('website.rumah.rumah', compact('datarumah'));
+        $rumah = Rumah::where('idrumah', $id)->first();
+    
+        if (!$rumah) {
+            return redirect()->back()->with('error', 'Data rumah tidak ditemukan.');
+        }
+    
+        return view('website.rumah.rumah', compact('rumah'));
     }
+    
     
     
     public function edit(string $id)

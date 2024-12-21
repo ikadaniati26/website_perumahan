@@ -43,7 +43,10 @@ class pembayaranController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pb = Pembayaran::where('idrumah', $id)->first();
+    
+        return view('components.dynamic-modal', compact('pb'));
+
     }
 
     /**
