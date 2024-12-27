@@ -12,7 +12,8 @@ class Rumah extends Model
     protected $table= 'rumah';
     protected $fillable = ['idrumah','no_rumah','status','penghuni_idpenghuni','created_at','updated_at'];
 
-    public function penghuni(){
-        return $this->belongsTo(Penghuni::class,'penghuni_idpenghuni', 'idpenghuni');
+    public function penghuni()
+    {
+        return $this->belongsTo(Penghuni::class, 'penghuni_idpenghuni', 'idpenghuni');
     }
 }

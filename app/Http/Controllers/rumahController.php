@@ -17,23 +17,19 @@ class rumahController extends Controller
      */
     public function index()
     {
-     $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
-     ->whereNotNull('penghuni_idpenghuni') // Filter: hanya rumah yang memiliki penghuni
-     ->get();
-     $data = RumahResource::collection($data)->toArray(request());
-
-        // $data = DB::table('rumah as r')
-        //     ->select(
-        //         'r.idrumah',
-        //         'r.no_rumah',
-        //         'r.status as status_rumah',
-        //         'h.nama as nama_penghuni',
-        //     )
-        //     ->leftJoin('penghuni as h', 'h.idpenghuni', '=', 'r.penghuni_idpenghuni')
-        //     ->whereNotNull('h.nama')
-        //     ->get();
+        $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
+            ->whereNotNull('penghuni_idpenghuni')
+            ->get();
         $data = RumahResource::collection($data)->toArray(request());
-        //    dd($data);
+
+        //  $data = Rumah::select('rumah.*', 'penghuni.nama');
+
+        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
+        // return response()->json($data);
+        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
+
+
+        // dd($data);
         return view('website.rumah.rumah', compact('data'));
     }
 
@@ -61,30 +57,16 @@ class rumahController extends Controller
         ], $message);
 
         //simpan ke db
-        rumah::create($validated);
+        Rumah::create($validated);
         return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
     }
 
 
     public function show(string $id)
     {
-        // $data = DB::table('rumah as r')
-        // ->select(
-        //     'r.idrumah',
-        //     'r.Penghuni_idPenghuni',
-        //     'r.rumah_idrumah',
-        //     'p.nama',
-        //     'p.status_penghuni',
-        //     'h.tanggal_mulai as historical_mulai',
-        //     'h.tanggal_mulai',
-        //     'h.tanggal_berakhir',
-        // )
-        // ->leftJoin('penghuni as p', 'p.idpenghuni', '=', 'r.Penghuni_idPenghuni') // Menghubungkan 'rumah' dengan 'penghuni'
-        // ->leftJoin('historical_penghuni as h', 'h.Penghuni_idPenghuni', '=', 'p.idpenghuni') // Menghubungkan 'historical' dengan 'penghuni'
-        // ->get();
-
         $data = Rumah::where('idrumah', $id)->first();
-        return view('website.rumah.detailhistory', compact('data'));
+        // return response()->json($data);
+        // return view('website.rumah.detailhistory', compact('data'));
     }
 
     /**

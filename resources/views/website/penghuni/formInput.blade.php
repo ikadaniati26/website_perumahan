@@ -38,6 +38,10 @@ $text = ['Penghuni','Home', 'Form InputPenghuni'];
                             @endphp
                             <x-form.input_dropdown name="status_menikah" :nilai="$status_menikah" label="Masukkan status pernikahan" text="Pilihan"/>
                         </div>
+                        <div class="col-md-4">
+                            <x-form.input_file id="122" label="Masukkan File" name="abc" />
+                        </div>
+
 
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Submit</button>

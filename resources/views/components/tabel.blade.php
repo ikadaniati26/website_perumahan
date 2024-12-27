@@ -1,9 +1,9 @@
 <div class="table-responsive">
-    <table class="table datatable">
-        <thead>
+    <table id="example" class="table table-striped table-bordered my-3">
+        <thead class="table-primary">
             <tr>
                 @foreach ($headerTable as $item)
-                    <th>{{ $item }}</th>
+                    <th class="text-nowrap text-center">{{ $item }}</th>
                 @endforeach
             </tr>
         </thead>
@@ -13,37 +13,49 @@
             @endphp
             @foreach ($data as $p)
                 <tr>
-                    <td>{{ $no++ }}</td>
+                    <td class="text-center">{{ $no++ }}</td>
 
                     @foreach ($p as $key => $item)
                         @unless ($key === 'id' || $key === 'created_at' || $key === 'updated_at' || $key === 'Penghuni_idPenghuni')
-                            <td>{{ $item }}</td>
+                            <td class="text-center">{{ $item }}</td>
                         @endunless
                     @endforeach
 
-                    <td class="col-12 action-buttons">
+                    <td class="action-buttons m-0 p-2 text-center">
                         <form method="POST" action="">
                             @csrf
                             @method('DELETE')
 
-                            <!-- Tombol View -->
-                            <a href="{{ route($route, ['id'=>$p['id']]) }}" class="btn btn-success btn-sm me-2">
-                                <i class="fas fa-eye"></i> View
-                            </a>
+                            {{-- {{dd($p)}} --}}
+                            <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2" icon="fas fa-eye" messege="View History"/>
 
-                            {{-- <!-- Tombol Edit -->
-                            <a href="{{ route('edit', $p['id']) }}" class="btn btn-warning btn-sm me-2">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
+                            <!-- Tombol add -->
+                            <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add" messege="Tambah Penghuni"/>
+
+
+                            <!-- Tombol Edit -->
+                            <x-Button.button_edit btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit"/>
 
                             <!-- Tombol Delete -->
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button> --}}
+                            <x-Button.button_submit btn="btn btn-danger btn-sm" icon="fas fa-trash-alt" messege="Edit"/>
                         </form>
                     </td>
             @endforeach
-
         </tbody>
     </table>
 </div>
+
+<x-modal.modal_tabel/>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "get",
+            url: "url",
+            dataType: "json",
+            success: function (response) {
+                
+            }
+        });
+    });
+</script>

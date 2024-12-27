@@ -41,37 +41,37 @@
             
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->nama}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $data->nama}}</div>
                   </div>
             
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Foto KTP</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->foto_ktp}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $data->foto_ktp}}</div>
                   </div>
             
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Status Penghuni</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->status_penghuni}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $data->status_penghuni}}</div>
                   </div>
             
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">No Telp</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->no_telp}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $data->no_telp}}</div>
                   </div>
             
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Status Menikah</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->status_menikah}}</div>
+                    {{-- <div class="col-lg-9 col-md-8">{{ $showpenghuni->status_menikah}}</div> --}}
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">dibuat pada</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->created_at}}</div>
+                    {{-- <div class="col-lg-9 col-md-8">{{ $showpenghuni->created_at}}</div> --}}
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">diubah pada</div>
-                    <div class="col-lg-9 col-md-8">{{ $showpenghuni->updated_at}}</div>
+                    {{-- <div class="col-lg-9 col-md-8">{{ $showpenghuni->updated_at}}</div> --}}
                   </div>
                 </div>
               </div>

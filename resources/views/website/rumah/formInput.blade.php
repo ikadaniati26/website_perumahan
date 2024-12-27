@@ -28,6 +28,9 @@ $text = ['Penghuni','Home', 'Form InputRumah'];
                         <div class="col-md-4">
                             <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$penghuni" label="Masukkan nama penghuni" text="Pilihan"/>
                         </div>
+                        <div class="col-md-4">
+                            <x-form.input_file id="122" label="Masukkan File" name="abc" />
+                        </div>
 
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Submit</button>
