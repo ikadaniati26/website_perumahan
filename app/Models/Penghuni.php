@@ -14,7 +14,12 @@ class Penghuni extends Model
 
     public function rumah()
     {
-        return $this->hasMany(Rumah::class, 'penghuni_idpenghuni', 'idpenghuni');
+        return $this->hasMany(Rumah::class,'penghuni_idpenghuni','idpenghuni');
     }
-    
+    public function pembayaran()
+    {
+        return $this->hasMany(pembayaran::class,'penghuni_idpenghuni','idpenghuni');
+    }
+    //hasMany : digunakan untuk mendefinisikan hubungan "satu ke banyak" satu rumah dapat dihuni banyak penghuni
+
 }

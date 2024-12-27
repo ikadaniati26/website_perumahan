@@ -21,6 +21,5 @@ class RumahResource extends JsonResource
             'nama' => $this->penghuni['nama']
 
         ];
-
     }
 }

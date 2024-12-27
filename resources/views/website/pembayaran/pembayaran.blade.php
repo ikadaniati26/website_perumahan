@@ -2,7 +2,7 @@
 
 @section('content')
 @php
-$text = ['Penghuni','Home', 'Pembayaran'];
+$text = ['Pembayaran','Home', 'Pembayaran'];
 @endphp
 
 <x-header-title :text="$text" />
@@ -12,7 +12,7 @@ $text = ['Penghuni','Home', 'Pembayaran'];
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Data Penghuni</h5>
+            <h5 class="card-title">Data Pembayaran</h5>
             <!-- Button Tambah Data -->
             <a href="{{ url('/inputpembayaran') }}" class="btn btn-primary mb-2">
               <i class="fas fa-plus"></i> Tambah Data
@@ -23,10 +23,12 @@ $text = ['Penghuni','Home', 'Pembayaran'];
             </div>
             @endif
             @php
-                $headerTable = ['No','jenis_iuran','jumlah','bulan_bayar','status','create_at','update_at']
+                $headerTable = ['No', 'Nama','jenis_iuran','jumlah','bulan_bayar','status', 'aksi']
             @endphp
   
-            <x-tabel :data="$pembayaran" :headerTable="$headerTable"  />
+            <x-tabel :data="$pembayaran" :headerTable="$headerTable" editroute="edit_rumah"
+            hapusroute="hapus_rumah" withModal="true" />
+            <x-dynamic-modal />
   
           </div>
         </div>

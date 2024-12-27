@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\http\Resources\PembayaranResource;
-
+use App\Models\Penghuni;
 
 class pembayaranController extends Controller
 {
@@ -14,7 +14,9 @@ class pembayaranController extends Controller
     public function index()
     {
         $pembayaran = pembayaran::all();
+        // dd($pembayaran);
         $pembayaran = PembayaranResource::collection($pembayaran)->toArray(request());
+        // return response()->json($pembayaran);
         return view('website.pembayaran.pembayaran', compact('pembayaran'));
     }
 
@@ -23,7 +25,9 @@ class pembayaranController extends Controller
      */
     public function create()
     {
-        return view('website.pembayaran.formInput');
+        $pembayaran = Pembayaran::all();
+        $penghuni = Penghuni::all();
+        return view('website.pembayaran.formInput', compact('pembayaran','penghuni'));
     }
 
     /**
@@ -39,7 +43,10 @@ class pembayaranController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pb = Pembayaran::where('idrumah', $id)->first();
+    
+        return view('components.dynamic-modal', compact('pb'));
+
     }
 
     /**

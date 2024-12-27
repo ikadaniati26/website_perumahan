@@ -11,33 +11,35 @@ $text = ['Penghuni','Home', 'FormInputPembayaran'];
             <div class="card">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Floating labels Form</h5>
+                      <h5 class="card-title">Form input pembayaran</h5>
                       <!-- Floating Labels Form -->
                       <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="col-md-12">
+                            <x-form.input_dropdowndinamis name="nama" :nilai="$penghuni" label="Masukkan nama pembayar" text="Pilihan"/>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            @php
+                                $nilai = ['kebersihan','iuran satpam']
+                            @endphp
+                            <x-form.input_dropdown name="status_pembayaran" :nilai="$nilai" label="Masukkan status penghuni" text="Pilihan"/>
+                        </div>
+                        <div class="col-md-6">
                             <x-form.validasi name="nama"/>
-                            <x-form.input_text name="nama" label="Masukan Nama Anda"/>
+                            <x-form.input_text name="jumlah" label="Masukan Jumlah uang"/>
                         </div>
                         <div class="col-md-6">
-                            <x-form.validasi name="foto_ktp"/>
-                            <x-form.input_file name="foto_ktp" label="Masukkan foto ktp"/>
-                        </div>
-                        <div class="col-md-6">
-                            @php
-                                $nilai = ['kontrak','tetap']
-                            @endphp
-                            <x-form.input_dropdown name="status_penghuni" :nilai="$nilai" label="Masukkan status penghuni" text="Pilihan"/>
-                        </div>
-                        <div class="col-md-6">
-                            <x-form.input_number name="no_telp" label="Masukan Nomor telp"/>
+                            <x-form.validasi name="nama"/>
+                            <x-form.input_text name="bulan_bayar" label="Masukan bulan bayar"/>
                         </div>
                         <div class="col-md-6">
                             @php
-                                $status_menikah = ['belum','sudah']
+                                $nilai = ['lunas','belum']
                             @endphp
-                            <x-form.input_dropdown name="status_menikah" :nilai="$status_menikah" label="Masukkan status pernikahan" text="Pilihan"/>
+                            <x-form.input_dropdown name="status_pembayaran" :nilai="$nilai" label="Masukkan status pembayaran" text="Pilihan"/>
                         </div>
+                        
 
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Submit</button>

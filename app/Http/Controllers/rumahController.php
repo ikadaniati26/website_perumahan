@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PenghuniResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\http\Resources\RumahResource;
@@ -12,9 +13,6 @@ use App\Models\Rumah;
 
 class rumahController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
@@ -44,11 +42,10 @@ class rumahController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-
         $message = [
-            'no_rumah.required' => 'nomor rumah harus diisi',
-            'status' => 'status rumah harus diisi',
-            'nama_penghuni' => 'nama penghuni harus diisi'
+            'no_rumah.required' => 'No rumah harus diisi',
+            'status_rumah.required' => 'Status rumah harus diisi',
+            'nama_penghuni.nullable' => 'Nama penghuni harus diisi'
         ];
         $validated = $request->validate([
             'no_rumah' => 'required',
@@ -68,10 +65,9 @@ class rumahController extends Controller
         // return response()->json($data);
         // return view('website.rumah.detailhistory', compact('data'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
+    
+    
     public function edit(string $id)
     {
         //
@@ -90,6 +86,7 @@ class rumahController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rumah = Rumah::where('idrumah', $id)->delete();
+        return redirect('/rumah')->with('success', 'data rumah berhasil dihapus');
     }
 }

@@ -1,8 +1,8 @@
 <div class="form-floating">
     <select class="form-select" id="floatingSelect" aria-label="State" name="{{ $name }}">
-        <option selected>{{ $label }}</option>
+        <option value="">{{ $label }}</option>
         @foreach ($nilai as $item)
-        <option value="{{$item['idpenghuni']}}">{{$item['nama']}}</option>
+        <option value="{{$item['id']}}">{{$item['nama']}}</option>
         @endforeach
     </select>
     <label for="floatingSelect">{{ $text }}</label>

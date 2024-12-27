@@ -17,22 +17,29 @@ class authController extends Controller
 
    // Proses login
    public function login(Request $request)
-   {
-       $request->validate([
-           'username' => 'required',
-           'password' => 'required',
-       ]);
-   
-       $username = 'admin';
-       $password = '123';
-   
-       if ($request->username === $username && $request->password === $password) {
-           $request->session()->put('user', $username); // Simpan session
-           return redirect()->route('dashboard'); // Redirect ke dashboard
-       }
-   
-       return back()->withErrors(['error' => 'Invalid credentials']);
-   }
+{
+    $request->validate([
+        'username' => 'required',
+        'password' => 'required',
+    ]);
+
+    // Hardcoded credentials untuk admin
+    $username = 'admin';
+    $password = '123';
+
+    if ($request->username === $username && $request->password === $password) {
+        // Simpan data pengguna sebagai array
+        $user = (object) [
+            'username' => $username,
+        ];
+
+        $request->session()->put('user', $user); // Simpan ke session sebagai object
+        return redirect()->route('dashboard'); // Redirect ke dashboard
+    }
+
+    return back()->withErrors(['error' => 'Invalid credentials']);
+}
+
    
    // Logout
    public function logout()

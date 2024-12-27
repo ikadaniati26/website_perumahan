@@ -11,7 +11,7 @@ $text = ['Penghuni','Home', 'Form InputPenghuni'];
             <div class="card">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Floating labels Form</h5>
+                      <h5 class="card-title">Form Input Penghuni</h5>
                       <!-- Floating Labels Form -->
                       <form class="row g-3" action="{{ url('/store') }}" enctype="multipart/form-data" method="post">
                         @csrf
@@ -38,10 +38,6 @@ $text = ['Penghuni','Home', 'Form InputPenghuni'];
                             @endphp
                             <x-form.input_dropdown name="status_menikah" :nilai="$status_menikah" label="Masukkan status pernikahan" text="Pilihan"/>
                         </div>
-                        <div class="col-md-4">
-                            <x-form.input_file id="122" label="Masukkan File" name="abc" />
-                        </div>
-
 
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Submit</button>

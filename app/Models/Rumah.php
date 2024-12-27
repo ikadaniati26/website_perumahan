@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rumah extends Model
 {
     use HasFactory;
+    // public $timestamps = false; // Nonaktifkan timestamps
 
     protected $table= 'rumah';
     protected $fillable = ['idrumah','no_rumah','status','penghuni_idpenghuni','created_at','updated_at'];
