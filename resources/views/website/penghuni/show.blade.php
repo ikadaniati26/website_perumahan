@@ -47,7 +47,7 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Foto KTP</div>
                     <div class="col-lg-9 col-md-8">
-                        <img src="{{ asset('storage/assets/img/datadiri/'.$showpenghuni->foto_ktp) }}" alt="Foto KTP" style="max-width: 100%; height: auto;">
+                      <img src="{{ asset($showpenghuni->foto_ktp) }}" alt="Gambar Datadiri" style="width: 100px; height: auto;">
                     </div>
                 </div>
                 
