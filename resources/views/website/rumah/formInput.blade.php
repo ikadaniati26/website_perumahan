@@ -23,20 +23,15 @@ $text = ['Penghuni','Home', 'Form InputRumah'];
                             <div class="col-md-4">
                                 @php
                                 $nilai = ['dihuni','tidak dihuni']
-                                @endphp
-                                <x-form.input_dropdown name="status_rumah" :nilai="$nilai" label="Masukkan status rumah"
-                                    text="Pilihan" />
-                            </div>
-                            <div class="col-md-4">
-                                <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$penghuni"
-                                    label="Masukkan nama penghuni" text="Pilihan"/>
-                            </div>
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                            </div>
-                        </form><!-- End floating Labels Form -->
+                            @endphp
+                            <x-form.input_dropdown name="status_rumah" :nilai="$nilai" label="Masukkan status rumah" text="Pilihan"/>
+                        </div>
+                        <div class="col-md-4">
+                            <x-form.input_dropdowndinamis name="nama_penghuni" :nilai="$penghuni" label="Masukkan nama penghuni" text="Pilihan"/>
+                        </div>
+                        <div class="col-md-4">
+                            <x-form.input_file id="122" label="Masukkan File" name="abc" />
+                        </div>
 
                     </div>
                 </div>

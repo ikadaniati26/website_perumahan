@@ -15,24 +15,27 @@ class rumahController extends Controller
 {
     public function index()
     {
-        $data = Rumah::all();
+        $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
+            ->whereNotNull('penghuni_idpenghuni')
+            ->get();
         $data = RumahResource::collection($data)->toArray(request());
-        // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
-        // return response()->json($data);
-        // ================jika menggunakan relasi pengecekan data hanya bisa menggunakan format json ==============
 
+        //  $data = Rumah::select('rumah.*', 'penghuni.nama');
+
+        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
+        // return response()->json($data);
+        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
+
+
+        // dd($data);
         return view('website.rumah.rumah', compact('data'));
     }
 
 
     public function create()
     {
-        $rumah = Rumah::all(); 
-        $penghuni = Penghuni::all(); 
-        $rumah = RumahResource::collection($rumah)->toArray(request());
-        $penghuni = PenghuniResource::collection($penghuni)->toArray(request());
-
-        return view('website.rumah.formInput', compact('penghuni', 'rumah'));
+        $penghuni = Penghuni::all();
+        return view('website.rumah.formInput', compact('penghuni'));
     }
 
 
@@ -46,29 +49,21 @@ class rumahController extends Controller
         ];
         $validated = $request->validate([
             'no_rumah' => 'required',
-            'status_rumah' => 'required',
-            'nama_penghuni' => 'nullable',
+            'status' => 'required',
+            'nama_penghuni' => 'required',
         ], $message);
 
-        // Simpan ke database
-        Rumah::create([
-            'no_rumah' => $validated['no_rumah'],
-            'status' => $validated['status_rumah'], // Sesuaikan nama kolom di database
-            'penghuni_idpenghuni' => $validated['nama_penghuni'] ?? null,// Foreign Key
-        ]);
+        //simpan ke db
+        Rumah::create($validated);
         return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
     }
 
 
     public function show(string $id)
     {
-        $rumah = Rumah::where('idrumah', $id)->first();
-    
-        if (!$rumah) {
-            return redirect()->back()->with('error', 'Data rumah tidak ditemukan.');
-        }
-    
-        return view('website.rumah.rumah', compact('rumah'));
+        $data = Rumah::where('idrumah', $id)->first();
+        // return response()->json($data);
+        // return view('website.rumah.detailhistory', compact('data'));
     }
     
     

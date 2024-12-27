@@ -1,51 +1,61 @@
 <div class="table-responsive">
-    <table class="table datatable">
-        <thead>
+    <table id="example" class="table table-striped table-bordered my-3">
+        <thead class="table-primary">
             <tr>
                 @foreach ($headerTable as $item)
-                <th>{{ $item }}</th>
+                    <th class="text-nowrap text-center">{{ $item }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
             @php
-            $no = 1;
+                $no = 1;
             @endphp
-            @foreach($data as $p)
-            <tr>
-                <td>{{ $no++ }}</td>
-                @foreach($p as $key => $item)
-                @unless($key === 'id' || $key === "created_at" || $key === "updated_at" || $key ===
-                "Penghuni_idPenghuni")
-                <td>{{ $item }}</td>
-                @endunless
-                @endforeach
-                <td>
-                    <form method="POST" action="{{ route($hapusroute, ['table' => $item, 'id' => $p['id']]) }}"
-                        style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        @isset($showroute)
-                        <a href="{{ route($showroute, ['id' => $p['id']]) }}" class="text-info me-2"><i
-                                class="fas fa-eye"></i></a>
-                        @endisset
+            @foreach ($data as $p)
+                <tr>
+                    <td class="text-center">{{ $no++ }}</td>
 
-                        @isset($withModal)
-                        <button type="button" class="btn btn-link text-info me-2 p-0" data-bs-toggle="modal"
-                            data-bs-target="#dynamicModal" data-title="Detail Rumah"  data-bs-url="">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        @endisset
+                    @foreach ($p as $key => $item)
+                        @unless ($key === 'id' || $key === 'created_at' || $key === 'updated_at' || $key === 'Penghuni_idPenghuni')
+                            <td class="text-center">{{ $item }}</td>
+                        @endunless
+                    @endforeach
+
+                    <td class="action-buttons m-0 p-2 text-center">
+                        <form method="POST" action="">
+                            @csrf
+                            @method('DELETE')
+
+                            {{-- {{dd($p)}} --}}
+                            <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2" icon="fas fa-eye" messege="View History"/>
+
+                            <!-- Tombol add -->
+                            <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add" messege="Tambah Penghuni"/>
 
 
-                        <a href="{{ route($editroute, ['id' => $p['id']]) }}" class="text-warning me-2"><i
-                                class="fas fa-edit"></i></a>
-                        <button type="submit" class="btn btn-link text-danger p-0"><i
-                                class="fas fa-trash-alt"></i></button>
-                    </form>
-                </td>
-            </tr>
+                            <!-- Tombol Edit -->
+                            <x-Button.button_edit btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit"/>
+
+                            <!-- Tombol Delete -->
+                            <x-Button.button_submit btn="btn btn-danger btn-sm" icon="fas fa-trash-alt" messege="Edit"/>
+                        </form>
+                    </td>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<x-modal.modal_tabel/>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "get",
+            url: "url",
+            dataType: "json",
+            success: function (response) {
+                
+            }
+        });
+    });
+</script>

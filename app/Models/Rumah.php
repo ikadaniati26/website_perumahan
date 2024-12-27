@@ -11,10 +11,10 @@ class Rumah extends Model
     // public $timestamps = false; // Nonaktifkan timestamps
 
     protected $table= 'rumah';
-    protected $fillable = ['idrumah','no_rumah','status','created_at','updated_at','penghuni_idpenghuni'];
-    
+    protected $fillable = ['idrumah','no_rumah','status','penghuni_idpenghuni','created_at','updated_at'];
+
     public function penghuni()
     {
-        return $this->belongsTo(Penghuni::class,'penghuni_idpenghuni', 'idpenghuni');
+        return $this->belongsTo(Penghuni::class, 'penghuni_idpenghuni', 'idpenghuni');
     }
 }
