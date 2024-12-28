@@ -25,10 +25,15 @@ $text = ['Penghuni','Home', 'Penghuni'];
 
           @php
               $headerTable = ['No', 'Nama', 'ktp', 'status', 'no telp', 'menikah','Action'];
-              // dd($penghuni);
           @endphp
 
-          <x-tabel :data="$penghuni" :headerTable="$headerTable" showroute="show_penghuni" editroute="edit_penghuni" hapusroute="hapus_penghuni"/>
+          <x-tabel 
+                  :data="$penghuni" 
+                  :headerTable="$headerTable" 
+                  showroute="show_penghuni" 
+                  editroute="edit_penghuni" 
+                  hapusroute="hapus_penghuni" 
+                  view="true"/>
 
         </div>
       </div>
