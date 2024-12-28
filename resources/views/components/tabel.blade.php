@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table id="example" class="table table-striped table-bordered my-3">
         <thead class="table-primary">
-            <tr>
+            <tr class="align-middle">
                 @foreach ($headerTable as $item)
                     <th class="text-nowrap text-center">{{ $item }}</th>
                 @endforeach
@@ -22,22 +22,31 @@
                     @endforeach
 
                     <td class="action-buttons m-0 p-2 text-center">
-                        <form method="POST" action="">
+                        <form method="POST" action="" class="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
                             @csrf
                             @method('DELETE')
 
-                            {{-- {{dd($p)}} --}}
-                            <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2" icon="fas fa-eye" messege="View History"/>
+                            @if (isset($view) && $view == "true")
+                                <x-Button.button_view btn="btn btn-success btn-sm me-2"
+                                    icon="fas fa-eye" messege="View History" :rute="$showroute" :id="$p['id']"/>
+                            @endif
+
+                            @if (isset($view_modal) && $view_modal == "true")
+                                <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2"
+                                    icon="fas fa-eye" messege="View History"/>
+                            @endif
 
                             <!-- Tombol add -->
-                            <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add" messege="Tambah Penghuni"/>
+                            <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add"
+                                messege="Tambah Penghuni" />
 
 
                             <!-- Tombol Edit -->
-                            <x-Button.button_edit btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit"/>
+                            <x-Button.button_edit btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit" />
 
                             <!-- Tombol Delete -->
-                            <x-Button.button_submit btn="btn btn-danger btn-sm" icon="fas fa-trash-alt" messege="Edit"/>
+                            <x-Button.button_submit btn="btn btn-danger btn-sm" icon="fas fa-trash-alt"
+                                messege="Edit" />
                         </form>
                     </td>
             @endforeach
@@ -45,7 +54,7 @@
     </table>
 </div>
 
-<x-modal.modal_tabel/>
+<x-modal.modal_tabel />
 
 <script>
     $(document).ready(function() {
@@ -53,8 +62,8 @@
             type: "get",
             url: "url",
             dataType: "json",
-            success: function (response) {
-                
+            success: function(response) {
+
             }
         });
     });

@@ -47,11 +47,10 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Foto KTP</div>
                     <div class="col-lg-9 col-md-8">
-                      <img src="{{ asset($showpenghuni->foto_ktp) }}" alt="Gambar Datadiri" style="width: 100px; height: auto;">
+                      <img src="{{ asset('/public/assets/img/datadiri/'.$showpenghuni->foto_ktp) }}" alt="Gambar Datadiri" style="width: 100px; height: auto;">
                     </div>
                 </div>
                 
-            
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Status Penghuni</div>
                     <div class="col-lg-9 col-md-8">{{ $showpenghuni->status_penghuni}}</div>
