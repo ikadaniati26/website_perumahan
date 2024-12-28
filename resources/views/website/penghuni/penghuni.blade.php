@@ -33,7 +33,9 @@ $text = ['Penghuni','Home', 'Penghuni'];
                   showroute="show_penghuni" 
                   editroute="edit_penghuni" 
                   hapusroute="hapus_penghuni" 
-                  view="true"/>
+                  view="true"
+                  add="false"
+                  edit="true"/>
 
         </div>
       </div>
