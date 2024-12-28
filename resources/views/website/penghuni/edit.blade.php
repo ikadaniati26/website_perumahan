@@ -17,11 +17,7 @@
                 @csrf
                 @method('PATCH')
                 <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="nama" type="text" class="form-control" id="fullName"
-                            value="{{isset($editpenghuni->nama)?$editpenghuni->nama : ''}}">
-                    </div>
+                    <x-form_edit.input_text name="nama" :value="$editpenghuni->nama"/>
                 </div>
 
                 <div class="row mb-3">

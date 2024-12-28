@@ -14,7 +14,6 @@ class penghuniController extends Controller
     {
         $penghuni = penghuni::all();
         $penghuni = PenghuniResource::collection($penghuni)->toArray(request());
-        // dd($penghuni);
         return view('website.penghuni.penghuni', compact('penghuni'));
     }
 
@@ -79,9 +78,7 @@ class penghuniController extends Controller
             'penghuni.no_telp',
             'penghuni.status_menikah',
         )
-            ->where('penghuni.idpenghuni', $id)
-            ->first();
-            // dd($editpenghuni);
+            ->where('penghuni.idpenghuni', $id)->first();
         return view('website.penghuni.edit', compact('editpenghuni'));
     }
 

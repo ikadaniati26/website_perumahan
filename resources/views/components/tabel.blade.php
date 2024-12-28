@@ -22,31 +22,35 @@
                     @endforeach
 
                     <td class="action-buttons m-0 p-2 text-center">
-                        <form method="POST" action="" class="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
+                        <form method="POST" action=""
+                            class="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
                             @csrf
                             @method('DELETE')
 
-                            @if (isset($view) && $view == "true")
-                                <x-Button.button_view btn="btn btn-success btn-sm me-2"
-                                    icon="fas fa-eye" messege="View History" :rute="$showroute" :id="$p['id']"/>
+                            @if (isset($view) && $view == 'true')
+                                <x-Button.button_view btn="btn btn-success btn-sm me-2" icon="fas fa-eye" messege="View"
+                                    :rute="$showroute" :id="$p['id']" />
                             @endif
 
-                            @if (isset($view_modal) && $view_modal == "true")
+                            @if (isset($view_modal) && $view_modal == 'true')
                                 <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2"
-                                    icon="fas fa-eye" messege="View History"/>
+                                    icon="fas fa-eye" messege="View History" />
                             @endif
 
                             <!-- Tombol add -->
-                            <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add"
-                                messege="Tambah Penghuni" />
-
+                            @if (isset($add) && $add == 'true')
+                                <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add"
+                                    messege="Tambah Penghuni" />
+                            @endif
 
                             <!-- Tombol Edit -->
-                            <x-Button.button_edit btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit" />
+                            @if (isset($edit) && $edit == 'true')
+                                <x-Button.button_edit :rute="$editroute" :id="$p['id']" btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit" />
+                            @endif
 
                             <!-- Tombol Delete -->
                             <x-Button.button_submit btn="btn btn-danger btn-sm" icon="fas fa-trash-alt"
-                                messege="Edit" />
+                                messege="Delete" />
                         </form>
                     </td>
             @endforeach
