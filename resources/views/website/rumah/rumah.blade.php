@@ -12,7 +12,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Data Rumah</h5>
-                        <x-button.button_add btn="btn btn-primary mb-3" icon="fas fa-plus" messege="Tambah Rumah" rute="/inputrumah"/>
+                        <x-button.button_add 
+                                   btn="btn btn-primary mb-3" 
+                                   icon="fas fa-plus" 
+                                   messege="Tambah Rumah" 
+                                   rute="/inputrumah"
+                        />
 
                         @if (session('success'))
                             <div class="alert alert-success">

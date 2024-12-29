@@ -25,6 +25,11 @@ class rumahController extends Controller
         return view('website.rumah.rumah', compact('data'));
     }
 
+    public function create_rumah()
+    {   
+        $penghuni = Penghuni::all();
+        return view('website.rumah.formInput', compact('penghuni'));
+    }
 
     public function create($id)
     {   
@@ -36,7 +41,8 @@ class rumahController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
+
         $message = [
             'no_rumah.required' => 'No rumah harus diisi',
             'status_rumah.required' => 'Status rumah harus diisi',
@@ -68,7 +74,9 @@ class rumahController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $rumah = Rumah::where('idrumah', $id)->first();
+        // dd($rumah);
+        return view('website.rumah.edit', compact('rumah'));
     }
 
     /**
