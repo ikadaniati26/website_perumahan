@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-xl-12">
         <div class="card p-4">
-            <form action="{{ route('update_penghuni', ['id' => $editpenghuni->id]) }}" method="POST">
+            <form action="{{ route('update_penghuni' , ['id' => $editpenghuni->idpenghuni])}}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="row mb-3">
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <x-form_edit.input_image name="foto_ktp" :value="$editpenghuni->foto_ktp"/>
+                    <x-form_edit.input_image name="foto_ktp" :value="asset($editpenghuni->foto_ktp)"/>
                 </div>
 
                 <div class="row mb-3">

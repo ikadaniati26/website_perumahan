@@ -42,7 +42,7 @@ class penghuniController extends Controller
             'no_telp' => 'required',
             'status_menikah' => 'required',
         ], $message);
-        
+
         // Proses penyimpanan file
         if ($request->hasFile('foto_ktp')) {
             $file = $request->file('foto_ktp'); // Mengambil input file
@@ -80,24 +80,38 @@ class penghuniController extends Controller
             'penghuni.status_menikah',
         )
             ->where('penghuni.idpenghuni', $id)->first();
+        // dd($editpenghuni);
+
         return view('website.penghuni.edit', compact('editpenghuni'));
     }
 
 
     public function update(Request $request, string $id)
     {
+        $ubah = Penghuni::where('idpenghuni', $id);
+        $awal = $ubah->foto_ktp;
+
         $penghuni = Penghuni::where('idpenghuni', $id)
             ->update([
                 'nama' => $request->nama,
-                // 'foto_ktp' => $request->foto_ktp,
+                'foto_ktp' => $awal, //set img dengan gambar yang lama sebagai default
                 'status_penghuni' => $request->status_penghuni,
                 'no_telp' => $request->no_telp,
                 'status_menikah' => $request->status_menikah,
             ]);
-    
-        return redirect('edit_penghuni')->with('success', 'Artikel berhasil diperbarui');
+
+        if ($request->hasFile('foto_ktp') && $request->file('foto_ktp')->isValid()){
+            $imageFile = $request->file('foto_ktp');
+            $imageName = $imageFile->getClientOriginalName();
+
+            $imageFile->move(public_path('assets/img/datadiri'), $imageName);
+            $penghuni['foto_ktp'] = $imageName;
+        }
+        $ubah->update($penghuni);
+
+        return redirect('penghuni')->with('success', 'Artikel berhasil diperbarui');
     }
-    
+
 
     public function destroy(string $id)
     {
