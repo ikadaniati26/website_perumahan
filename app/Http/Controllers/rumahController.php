@@ -15,19 +15,13 @@ class rumahController extends Controller
 {
     public function index()
     {
-        $data = Rumah::with('penghuni') // Melakukan eager loading relasi penghuni
-            ->whereNotNull('penghuni_idpenghuni')
-            ->get();
+        $data = Rumah::with('penghuni')->get();
         $data = RumahResource::collection($data)->toArray(request());
-
-        //  $data = Rumah::select('rumah.*', 'penghuni.nama');
 
         //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
         // return response()->json($data);
         //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
 
-
-        // dd($data);
         return view('website.rumah.rumah', compact('data'));
     }
 
@@ -61,13 +55,16 @@ class rumahController extends Controller
 
     public function show(string $id)
     {
-        $data = Rumah::where('idrumah', $id)->first();
-        // return response()->json($data);
+        $data = Rumah::with(['historyPenghuni.penghuni'])
+            ->where('idrumah', $id)
+            ->get();
+
+        return response()->json($data);
         // return view('website.rumah.detailhistory', compact('data'));
     }
-    
-    
-    
+
+
+
     public function edit(string $id)
     {
         //

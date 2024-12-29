@@ -16,6 +16,7 @@ class Penghuni extends Model
     {
         return $this->hasMany(Rumah::class,'penghuni_idpenghuni','idpenghuni');
     }
+    
     public function pembayaran()
     {
         return $this->hasMany(pembayaran::class,'penghuni_idpenghuni','idpenghuni');

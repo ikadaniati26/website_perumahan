@@ -23,9 +23,17 @@
                         @endif
 
                         @php
-                            $headerTable = ['No', 'No rumah', 'status', 'nama penghuni', 'Action'];
+                            $headerTable = ['No', 'No rumah', 'status Rumah', 'nama penghuni', 'Action'];
                         @endphp
-                        <x-tabel :data="$data" :headerTable="$headerTable" route="show_rumah" />
+                        <x-tabel 
+                                :data="$data" 
+                                :headerTable="$headerTable" 
+                                showroute="show_rumah"
+                                editroute="edit_penghuni" 
+                                hapusroute="hapus_penghuni" 
+                                view="true" 
+                                add="true"
+                                edit="true" />
                     </div>
                 </div>
 
