@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-xl-12">
         <div class="card p-4">
-            <form action="{{ route('update_penghuni' , ['id' => $editpenghuni->idpenghuni])}}" method="POST">
+            <form action="{{ route('update_penghuni', ['id' => $editpenghuni->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="row mb-3">
@@ -21,6 +21,7 @@
                 </div>
 
                 <div class="row mb-3">
+<<<<<<< HEAD
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">KTP</label>
                     <div class="col-md-8 col-lg-9">
                       <img src="{{ asset('/public/assets/img/datadiri/'.$editpenghuni->foto_ktp) }}" alt="Gambar Datadiri" style="width: 100px; height: auto;">
@@ -38,22 +39,21 @@
                         <input name="status_penghuni" type="text" class="form-control" id="fullName"
                             value="{{isset($editpenghuni->status_penghuni)?$editpenghuni->status_penghuni: ''}}">
                     </div>
+=======
+                    <x-form_edit.input_image name="foto_ktp" :value="$editpenghuni->foto_ktp"/>
+>>>>>>> b7b6ff8c08febdea1ef1c897550247c0b0ddf0de
                 </div>
 
                 <div class="row mb-3">
-                    <label for="company" class="col-md-4 col-lg-3 col-form-label">No Telp</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="no_telp" type="text" class="form-control" id="company"
-                            value="{{isset($editpenghuni->no_telp)?$editpenghuni->no_telp: ''}}">
-                    </div>
+                    <x-form_edit.input_text name="status_penghuni" :value="$editpenghuni->status_penghuni"/>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Status Menikah</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="status_menikah" type="text" class="form-control" id="Job"
-                            value="{{isset($editpenghuni->status_menikah)?$editpenghuni->status_menikah: ''}}">
-                    </div>
+                    <x-form_edit.input_text name="no_telp" :value="$editpenghuni->no_telp"/>
+                </div>
+
+                <div class="row mb-3">
+                    <x-form_edit.input_text name="status_menikah" :value="$editpenghuni->status_menikah"/>
                 </div>
 
                 <div class="text-center">
