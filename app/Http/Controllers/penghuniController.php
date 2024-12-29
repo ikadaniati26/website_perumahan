@@ -64,6 +64,7 @@ class penghuniController extends Controller
     public function show(string $id)
     {
         $showpenghuni = Penghuni::where('idpenghuni', $id)->first();
+        // dd($showpenghuni);
         return view('website.penghuni.show', compact('showpenghuni'));
     }
 
@@ -88,7 +89,7 @@ class penghuniController extends Controller
         $penghuni = Penghuni::where('idpenghuni', $id)
             ->update([
                 'nama' => $request->nama,
-                'foto_ktp' => $request->foto_ktp,
+                // 'foto_ktp' => $request->foto_ktp,
                 'status_penghuni' => $request->status_penghuni,
                 'no_telp' => $request->no_telp,
                 'status_menikah' => $request->status_menikah,
