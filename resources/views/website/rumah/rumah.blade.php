@@ -12,10 +12,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Data Rumah</h5>
-                        <!-- Button Tambah Data -->
-                        <a href="{{ url('/inputrumah') }}" class="btn btn-primary mb-3">
-                            <i class="fas fa-plus"></i> Tambah Data
-                        </a>
+                        <x-button.button_add btn="btn btn-primary mb-3" icon="fas fa-plus" messege="Tambah Rumah" rute="/inputrumah"/>
+
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -27,9 +25,10 @@
                         @endphp
                         <x-tabel 
                                 :data="$data" 
-                                :headerTable="$headerTable" 
+                                :headerTable="$headerTable"
+                                addroute="inputrumah" 
                                 showroute="show_rumah"
-                                editroute="edit_penghuni" 
+                                editroute="edit_rumah" 
                                 hapusroute="hapus_penghuni" 
                                 view="true" 
                                 add="true"

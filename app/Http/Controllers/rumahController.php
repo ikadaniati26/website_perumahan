@@ -26,10 +26,11 @@ class rumahController extends Controller
     }
 
 
-    public function create()
-    {
+    public function create($id)
+    {   
+        $rumah = Rumah::where('idrumah', $id)->first();
         $penghuni = Penghuni::all();
-        return view('website.rumah.formInput', compact('penghuni'));
+        return view('website.rumah.formInput', compact('penghuni', 'rumah'));
     }
 
 
@@ -57,10 +58,10 @@ class rumahController extends Controller
     {
         $data = Rumah::with(['historyPenghuni.penghuni'])
             ->where('idrumah', $id)
-            ->get();
+            ->first();
 
-        return response()->json($data);
-        // return view('website.rumah.detailhistory', compact('data'));
+        // return response()->json($data);
+        return view('website.rumah.detailhistory', compact('data'));
     }
 
 

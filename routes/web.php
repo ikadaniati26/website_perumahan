@@ -30,7 +30,7 @@ Route::delete('/hapus-penghuni/{id}',[penghuniController::class, 'destroy'])->na
 
 //ROUTE CRUD RUMAH
 Route::get('/rumah', [rumahController::class, 'index']);
-Route::get('/inputrumah',[rumahController::class,'create'])->name('inputrumah');
+Route::get('/inputrumah/{id}',[rumahController::class,'create'])->name('inputrumah');
 Route::post('/storerumah',[rumahController::class,'store'])->name('rumah');
 Route::get('/show_rumah/{id}', [rumahController::class, 'show'])->name('show_rumah');
 Route::get('/edit_rumah/{id}', [penghuniController::class, 'edit'])->name('edit_rumah');

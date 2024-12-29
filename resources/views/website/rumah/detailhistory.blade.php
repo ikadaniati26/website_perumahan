@@ -22,22 +22,23 @@
                             </ul>
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <h5 class="card-title">Detail Penghuni</h5>
+                                    <h5 class="card-title">History Rumah {{$data->no_rumah}} ( {{$data->status}} )</h5>
 
                                     @php
-                                    $headerTable = ['No', 'Nama', 'ktp', 'status', 'no telp', 'menikah','Action'];
-                                @endphp
+                                        $headerTable = ['No', 'Nama', 'ktp', 'status', 'no telp', 'menikah','Tanggal Masuk', 'Tanggal Keluar'];
+                                    @endphp
                       
-                                {{-- <x-tabel 
+                                <x-tabel.tabelView_history 
                                         :data="$data"
                                         :headerTable="$headerTable" 
-                                        showroute="show_penghuni" 
+                                        {{-- showroute="show_penghuni" 
                                         editroute="edit_penghuni" 
                                         hapusroute="hapus_penghuni" 
                                         view="true"
                                         add="false"
-                                        edit="true"/>                      
-                                </div> --}}
+                                        edit="true" --}}
+                                        />                      
+                                </div>
                             </div>
 
                         </div>
