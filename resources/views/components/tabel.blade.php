@@ -32,15 +32,10 @@
                                     :rute="$showroute" :id="$p['id']" />
                             @endif
 
-                            @if (isset($view_modal) && $view_modal == 'true')
-                                <x-Button.button_view target="#modal_tabel" btn="btn btn-success btn-sm me-2"
-                                    icon="fas fa-eye" messege="View History" />
-                            @endif
-
                             <!-- Tombol add -->
                             @if (isset($add) && $add == 'true')
                                 <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add"
-                                    messege="Tambah Penghuni" />
+                                    messege="Tambah Penghuni" :rute="$addroute" :id="$p['id']"/>
                             @endif
 
                             <!-- Tombol Edit -->
@@ -58,17 +53,3 @@
     </table>
 </div>
 
-<x-modal.modal_tabel />
-
-<script>
-    $(document).ready(function() {
-        $.ajax({
-            type: "get",
-            url: "url",
-            dataType: "json",
-            success: function(response) {
-
-            }
-        });
-    });
-</script>

@@ -21,7 +21,27 @@
                 </div>
 
                 <div class="row mb-3">
+<<<<<<< HEAD
+                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">KTP</label>
+                    <div class="col-md-8 col-lg-9">
+                      <img src="{{ asset('/public/assets/img/datadiri/'.$editpenghuni->foto_ktp) }}" alt="Gambar Datadiri" style="width: 100px; height: auto;">
+                        <div class="pt-2">
+                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row mb-3">
+                    <label for="about" class="col-md-4 col-lg-3 col-form-label">Status Penghuni</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="status_penghuni" type="text" class="form-control" id="fullName"
+                            value="{{isset($editpenghuni->status_penghuni)?$editpenghuni->status_penghuni: ''}}">
+                    </div>
+=======
                     <x-form_edit.input_image name="foto_ktp" :value="$editpenghuni->foto_ktp"/>
+>>>>>>> b7b6ff8c08febdea1ef1c897550247c0b0ddf0de
                 </div>
 
                 <div class="row mb-3">

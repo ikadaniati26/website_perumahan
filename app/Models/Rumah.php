@@ -17,4 +17,9 @@ class Rumah extends Model
     {
         return $this->belongsTo(Penghuni::class, 'penghuni_idpenghuni', 'idpenghuni');
     }
+
+    public function historyPenghuni()
+    {
+        return $this->hasMany(HistoryPenghuni::class, 'rumah_idrumah', 'idrumah');
+    }
 }
