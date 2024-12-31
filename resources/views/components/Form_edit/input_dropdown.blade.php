@@ -1,8 +1,10 @@
-<label for="fullName" class="col-md-4 col-lg-3 col-form-label">Status Rumah</label>
-<div class="col-md-8 col-lg-9">
-    <select name="dropdown" id="dropdown" class="form-control">
-        <option value="">-- Select an option --</option>
-        <option value="option1">dihuni</option>
-        <option value="option2">Tidak dihuni</option>
+<div class="form-floating" style="{{isset($hidden) && $hidden ? 'display: none' : 'text'}}">
+    <select class="form-select" id="floatingSelect" aria-label="State" name="{{ $name }}"
+    {{isset($disable) && $disable == "true" ? 'disabled' : ""}}>
+        <option selected>{{ $label }}</option>
+        @foreach ($nilai as $item)
+            <option value="{{ $item }}">{{ $item }}</option>
+        @endforeach
     </select>
+    <label for="floatingSelect">{{ $text }}</label>
 </div>

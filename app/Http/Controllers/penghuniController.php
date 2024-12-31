@@ -37,7 +37,7 @@ class penghuniController extends Controller
         ];
         $validated = $request->validate([
             'nama' => 'required',
-            'foto_ktp' => 'nullable|mimes:jpg|max:2048',
+            'foto_ktp' => 'nullable|mimes:jpg,png|max:2048',
             'status_penghuni' => 'required',
             'no_telp' => 'required',
             'status_menikah' => 'required',

@@ -6,6 +6,7 @@ use App\Http\Resources\PenghuniResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\http\Resources\RumahResource;
+use App\Models\historypenghuni;
 use App\Models\Penghuni;
 use App\Models\Rumah;
 
@@ -15,49 +16,57 @@ class rumahController extends Controller
 {
     public function index()
     {
-        $data = Rumah::with('penghuni')->get();
+        $data = Rumah::with('penghuni')->orderBy('no_rumah', 'ASC')->get();
         $data = RumahResource::collection($data)->toArray(request());
-
-        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
-        // return response()->json($data);
-        //  ===============Jika menggunakan Elequent Relasi pengecekan data hanya bisa menggunakan format json ================//
 
         return view('website.rumah.rumah', compact('data'));
     }
 
     public function create_rumah()
     {   
-        $penghuni = Penghuni::all();
-        return view('website.rumah.formInput', compact('penghuni'));
+        return view('website.rumah.form_tambahRumah');
     }
 
     public function create($id)
     {   
         $rumah = Rumah::where('idrumah', $id)->first();
         $penghuni = Penghuni::all();
-        return view('website.rumah.formInput', compact('penghuni', 'rumah'));
+        return view('website.rumah.form_tambahPenghuni', compact('penghuni', 'rumah'));
     }
-
 
     public function store(Request $request)
     {
-        dd($request->all());
-
         $message = [
             'no_rumah.required' => 'No rumah harus diisi',
-            'status_rumah.required' => 'Status rumah harus diisi',
-            'nama_penghuni.nullable' => 'Nama penghuni harus diisi'
-        ];
+            'status.required' => 'Status rumah harus diisi',        ];
         $validated = $request->validate([
             'no_rumah' => 'required',
             'status' => 'required',
-            'nama_penghuni' => 'required',
         ], $message);
 
         //simpan ke db
         Rumah::create($validated);
         return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
     }
+
+    public function store_riwayatPenghuni(Request $request)
+    {        
+        $penghuni = Penghuni::where('idpenghuni', $request->idPenghuni)->first();
+        historypenghuni::create([
+            'rumah_idrumah' => $request->idRumah,
+            'Penghuni_idPenghuni' => $request->idPenghuni,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_berakhir' => $request->tanggal_berakhir,
+        ]);
+
+        Rumah::where('idrumah', $request->idRumah)->update([
+            'status' => 'dihuni',
+            'penghuni_idpenghuni' => $request->idPenghuni,
+        ]);        
+
+        return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
+    }
+
 
 
     public function show(string $id)

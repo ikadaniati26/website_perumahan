@@ -33,6 +33,7 @@ Route::get('/rumah', [rumahController::class, 'index']);
 Route::get('/inputrumah',[rumahController::class,'create_rumah'])->name('inputrumah');
 Route::get('/inputrumah/{id}',[rumahController::class,'create'])->name('inputrumah');
 Route::post('/storerumah',[rumahController::class,'store'])->name('rumah');
+Route::post('/store_riwayatpenghuni',[rumahController::class,'store_riwayatPenghuni'])->name('rumah.riwayatpenghuni');
 Route::get('/show_rumah/{id}', [rumahController::class, 'show'])->name('show_rumah');
 Route::get('/edit_rumah/{id}', [rumahController::class, 'edit'])->name('edit_rumah');
 Route::delete('/hapus-rumah/{id}',[rumahController::class, 'destroy'])->name('hapus_rumah');

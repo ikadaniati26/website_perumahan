@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class historypenghuni extends Model
 {
     protected $table = 'historypenghuni';
-    protected $fillable = ['idhistoryPenghuni', 'tanggal_mulai', 'tanggal_berakhir', 'Penghuni_idPeghuni', 'rumah_idrumah'];
+    protected $fillable = ['idhistoryPenghuni', 'tanggal_mulai', 'tanggal_berakhir', 'Penghuni_idPenghuni', 'rumah_idrumah'];
+    public $timestamps = false;
 
     public function rumah()
     {
