@@ -1,5 +1,9 @@
-<div class="form-floating">
+@php
+    $hiden = isset($hidden) && $hidden == 'true' ? 'd-none' : '';
+@endphp
+
+<div class="form-floating {{$hiden}}">
     <input type="date" class="form-control" id="{{ $name }}" placeholder="{{ $label }}" name="{{ $name }}" 
-    {{isset($disable) && $disable == "true" ? 'disabled' : ""}}>
+    value="{{ $value ?? '' }}" {{isset($disable) && $disable == "true" ? 'disabled' : ""}}>
     <label for="{{ $name }}">{{ $label }}</label>
 </div>

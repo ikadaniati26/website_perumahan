@@ -36,6 +36,7 @@ Route::post('/storerumah',[rumahController::class,'store'])->name('rumah');
 Route::post('/store_riwayatpenghuni',[rumahController::class,'store_riwayatPenghuni'])->name('rumah.riwayatpenghuni');
 Route::get('/show_rumah/{id}', [rumahController::class, 'show'])->name('show_rumah');
 Route::get('/edit_rumah/{id}', [rumahController::class, 'edit'])->name('edit_rumah');
+Route::post('/update_rumah/{id}', [rumahController::class, 'update'])->name('update_rumah');
 Route::delete('/hapus-rumah/{id}',[rumahController::class, 'destroy'])->name('hapus_rumah');
 
 //ROUTE CRUD PEMBAYARAN

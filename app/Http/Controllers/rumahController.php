@@ -19,7 +19,7 @@ class rumahController extends Controller
         $data = Rumah::with('penghuni')->orderBy('no_rumah', 'ASC')->get();
         $data = RumahResource::collection($data)->toArray(request());
 
-        return view('website.rumah.rumah', compact('data'));
+        return view('website.rumah.rumah', compact('data'))->with('success');
     }
 
     public function create_rumah()
@@ -67,8 +67,6 @@ class rumahController extends Controller
         return redirect('/rumah')->with('success', 'data rumah berhasil disimpan');
     }
 
-
-
     public function show(string $id)
     {
         $data = Rumah::with(['historyPenghuni.penghuni'])
@@ -79,13 +77,11 @@ class rumahController extends Controller
         return view('website.rumah.detailhistory', compact('data'));
     }
 
-
-
     public function edit(string $id)
     {
-        $rumah = Rumah::where('idrumah', $id)->first();
-        // dd($rumah);
-        return view('website.rumah.edit', compact('rumah'));
+        $data = Rumah::with(['historyPenghuni.penghuni'])->where('idrumah', $id)->first()->toArray();
+
+        return view('website.rumah.edit', compact('data'));
     }
 
     /**
@@ -93,7 +89,21 @@ class rumahController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $penghuni = Rumah::with('penghuni')->where('idrumah', $id)->first();
+        dd($penghuni);
+
+        if ($request->status_rumah == 'tidak dihuni') {
+            $cek_rumah = null;
+        }else{
+            // $cek_rumah = $request->;
+        }
+
+        Rumah::where('idrumah', $id)->update([
+            'status' => $request->status_rumah,
+            'penghuni_idpenghuni' => $cek_rumah
+        ]);
+
+        return redirect('/rumah');
     }
 
     /**

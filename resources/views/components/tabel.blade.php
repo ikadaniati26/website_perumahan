@@ -35,12 +35,16 @@
                             <!-- Tombol add -->
                             @if (isset($add) && $add == 'true')
                                 <x-Button.button_add btn="btn btn-primary btn-sm me-2" icon="fas fa-add"
-                                    messege="Tambah Penghuni" :rute="$addroute" :id="$p['id']"/>
+                                    messege="Tambah Penghuni" :rute="$addroute" :id="$p['id']" />
                             @endif
 
                             <!-- Tombol Edit -->
+                            @php
+                                $disable = isset($p['status']) && $p['status'] == 'dihuni' ? "" : "disabled";
+                            @endphp
                             @if (isset($edit) && $edit == 'true')
-                                <x-Button.button_edit :rute="$editroute" :id="$p['id']" btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit" />
+                                <x-Button.button_edit :rute="$editroute" :id="$p['id']"
+                                    btn="btn btn-warning btn-sm me-2" icon="fas fa-edit" messege="Edit" :disable="$disable"/>
                             @endif
 
                             <!-- Tombol Delete -->
@@ -52,4 +56,3 @@
         </tbody>
     </table>
 </div>
-
